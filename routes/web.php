@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index');
+
+
+Route::middleware(['checkadmin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', 'AdminController@index');
+    });
+});
+
+
