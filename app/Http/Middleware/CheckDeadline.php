@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class CheckDeadline
 {
@@ -23,6 +24,6 @@ class CheckDeadline
         {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/unauthorized');
     }
 }

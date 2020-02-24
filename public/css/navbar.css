@@ -1,0 +1,8 @@
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.navbar-nav.navbar-center ul li {
+    padding: 0 20px;
+}
