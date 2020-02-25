@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Study Mate</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+
+    @yield('head')
+
 </head>
 <body>
     <div id="app">
@@ -32,9 +36,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <div class="nav navbar-nav navbar-center">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/index">Admin</a>
+                            </li>
 
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/deadline/index">DeadlineManager</a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

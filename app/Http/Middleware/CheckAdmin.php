@@ -24,6 +24,6 @@ class CheckAdmin
         {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/unauthorized');
     }
 }
