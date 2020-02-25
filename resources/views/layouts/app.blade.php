@@ -19,6 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+
+    @yield('head')
+
 </head>
 <body>
     <div id="app">
@@ -36,7 +39,7 @@
                     <div class="nav navbar-nav navbar-center">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/">Admin</a>
+                                <a class="nav-link" href="/admin/index">Admin</a>
                             </li>
 
                             <li class="nav-item">
@@ -44,7 +47,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/deadline/">DeadlineManager</a>
+                                <a class="nav-link" href="/deadline/index">DeadlineManager</a>
                             </li>
                         </ul>
                     </div>
