@@ -19,6 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $module = \App\Module::first();
+        $assignment = \App\Assignment::first();
+
+        $assignment->modules()->attach($module);
         return view('home');
     }
 }
