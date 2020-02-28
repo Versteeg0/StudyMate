@@ -25,12 +25,14 @@ Route::get('/unauthorized', function () {
 
 Route::middleware(['checkadmin'])->group(function () {
     Route::prefix('admin')->group(function () {
+        Route::get('/', 'AdminController@index');
         Route::get('/index', 'AdminController@index');
     });
 });
 
 Route::middleware(['checkdeadline'])->group(function () {
     Route::prefix('deadline')->group(function () {
+        Route::get('/', 'DeadlineController@index');
         Route::get('/index', 'DeadlineController@index');
     });
 });
