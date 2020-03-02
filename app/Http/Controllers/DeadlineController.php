@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 class DeadlineController extends Controller
 {
     public function index(){
-        return view('Deadline/index');
+        $assignments = \App\Assignment::all();
+        return view('Deadline/index', ['assignments' => $assignments]);
     }
+
+
 }
