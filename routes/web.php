@@ -27,6 +27,12 @@ Route::middleware(['checkadmin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', 'AdminController@index');
         Route::get('/index', 'AdminController@index');
+        Route::get('create', "Admin@createPage");
+        Route::get('edit/{id}', "Admin@editPage");
+        Route::get('delete/{id}', "Admin@delete");
+
+        Route::post("edit/{id}", 'Admin@edit');
+        Route::post("create/{id}", 'Admin@create');
     });
 });
 
