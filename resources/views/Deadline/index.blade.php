@@ -12,19 +12,22 @@
                     <thead>
                         <th>Naam</th>
                         <th >Coördinator</th>
+                        <th >Deadline</th>
                         <th></th>
                         <th></th>
                         <th></th>
                     </thead>
                     <tbody>
-                    @foreach($Assignments as $assignment)
+                    @foreach($assignments as $assignment)
                         <tr>
+                        @foreach($assignment->modules as $module)
                             <td>{{$module->module_name}}</td>
                             <td>{{$module->coordinator}}</td>
+                            <td>{{date('d-m-Y', strtotime($assignment->deadline))}}</td>
                             <td><a target="_blank" href="" class="btn btn-primary">Bekijk</a></td>
                             <td><a href="" class="btn btn-secondary">Bewerk</a></td>
                             <td><a href="" class="btn btn-danger">Verwijder</a></td>
-
+                        @endforeach
                         </tr>
                     @endforeach
                     </tbody>
