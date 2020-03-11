@@ -7,12 +7,16 @@ use App\Module;
 
 class Assignment extends Model
 {
-    public function modules(){
-        return $this->belongsToMany(Module::class, 'assignment_module');
+    public function module(){
+        return $this->belongsTo(Module::class);
     }
 
-    public function getModuleAttribute(){
-        return Assignment::find($this->id)->modules()-get();
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'assignment_tags');
+    }
+
+    public function getTagAttribute(){
+        return Assignment::find($this->id)->tags()-get();
     }
 
     protected $fillable = [

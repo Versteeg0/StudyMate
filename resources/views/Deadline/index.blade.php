@@ -18,16 +18,17 @@
                         <th></th>
                     </thead>
                     <tbody>
-                    @foreach($assignments as $assignment)
+                    @foreach($modules as $module)
                         <tr>
-                        @foreach($assignment->modules as $module)
                             <td>{{$module->module_name}}</td>
                             <td>{{$module->coordinator}}</td>
-                            <td>{{date('d-m-Y', strtotime($assignment->deadline))}}</td>
-                            <td><a target="_blank" href="" class="btn btn-primary">Bekijk</a></td>
-                            <td><a href="" class="btn btn-secondary">Bewerk</a></td>
-                            <td><a href="" class="btn btn-danger">Verwijder</a></td>
-                        @endforeach
+                            @if($module->assignment->deadline == '01-01-1970')
+                            <td>{{date('d-m-Y', strtotime($module->assignment->deadline))}}</td>
+                            @else
+                            <td>Deadline niet gezet</td>
+                            @endif
+                            <td><a href="{{ route('deadline.details', $module->id) }}" class="btn btn-primary">Bekijk</a></td>
+                            <td><a href="{{ route('deadline.editPage', $module->id) }}" class="btn btn-secondary">Bewerk</a></td>
                         </tr>
                     @endforeach
                     </tbody>

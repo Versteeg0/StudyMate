@@ -7,7 +7,7 @@ use App\Assignment;
 
 class Module extends Model
 {
-    public function teachers(){
+    public function teacher(){
         return  $this->belongsToMany('App\Teacher');
     }
 
@@ -15,11 +15,8 @@ class Module extends Model
         return Module::find($this->id)->courses()-get();
     }
 
-    public function assignments(){
-        return $this->belongsToMany(Assignment::class, 'assignment_module');
+    public function assignment(){
+        return $this->hasOne(Assignment::class);
     }
 
-    public function getAssignmentAttribute(){
-        return Module::find($this->id)->Assignment()-get();
-    }
 }

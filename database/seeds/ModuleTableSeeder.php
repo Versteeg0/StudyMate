@@ -10,7 +10,7 @@ class ModuleTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {        DB::table('users')->insert([
+    {        DB::table('modules')->insert([
         'module_name' => 'PHP',
         'module_description' => 'Websites bouwen met laravel en PHP',
         'coordinator' => 'Jasper'
