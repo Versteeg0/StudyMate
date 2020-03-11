@@ -8,11 +8,11 @@ use App\Assignment;
 class Module extends Model
 {
     public function teacher(){
-        return  $this->belongsToMany('App\Teacher');
+        return  $this->belongsToMany(Teacher::class, 'modules_teachers');
     }
 
     public function getTeacherAttribute(){
-        return Module::find($this->id)->courses()-get();
+        return Module::find($this->id)->teachers()-get();
     }
 
     public function assignment(){

@@ -24,17 +24,25 @@ Route::get('/unauthorized', function () {
 });
 
 Route::middleware(['checkadmin'])->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('/', 'AdminController@index');
-        Route::get('/index', 'AdminController@index');
-        Route::get('create', "Admin@createPage");
-        Route::get('edit/{id}', "Admin@editPage");
-        Route::get('delete/{id}', "Admin@delete");
+        Route::prefix('admin')->group(function () {
+            Route::get('/', 'AdminController@index');
+            Route::get('/index', 'AdminController@index');
 
-        Route::post("edit/{id}", 'Admin@edit');
-        Route::post("create/{id}", 'Admin@create');
+
+            Route::prefix('teacher')->group(function() {
+                Route::get('/', 'TeacherController@index')->name('teacher.index');
+                Route::get('create', 'TeacherController@createPage')->name('teacher.createpage');
+                Route::post('create', 'TeacherController@create')->name('teacher.create');
+                Route::get('edit/{id}', 'TeacherController@editPage')->name('teacher.edit');
+                Route::post('edit/{id}', 'TeacherController@edit')->name('teacher.edit.post');
+                Route::get('delete/{id}', 'TeacherController@delete')->name('teacher.delete');
+            });
     });
+
+
 });
+
+
 
 Route::middleware(['checkdeadline'])->group(function () {
     Route::prefix('deadline')->group(function () {
@@ -45,4 +53,5 @@ Route::middleware(['checkdeadline'])->group(function () {
         Route::get('details/{id}', 'DeadlineController@details')->name("deadline.details");
     });
 });
+
 
