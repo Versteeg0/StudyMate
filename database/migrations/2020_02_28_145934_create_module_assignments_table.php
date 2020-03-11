@@ -17,6 +17,8 @@ class CreateModuleAssignmentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('module_id');
             $table->unsignedBigInteger('assignment_id');
+            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('assignment_id')->references('id')->on('assignments');
             $table->timestamps();
         });
     }

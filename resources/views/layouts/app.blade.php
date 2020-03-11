@@ -39,16 +39,20 @@
                     <div class="nav navbar-nav navbar-center">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/index">Admin</a>
-                            </li>
-
-                            <li class="nav-item">
                                 <a class="nav-link" href="/">Dashboard</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/deadline/index">DeadlineManager</a>
-                            </li>
+                            @if(Auth::check())
+                                <?php $role = Auth::user()->role; ?>
+                                @if($role == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin/index">Admin</a>
+                                </li>
+                                @elseif($role == 2)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/deadline/index">DeadlineManager</a>
+                                    </li>
+                                @endif
+                            @endif
                         </ul>
                     </div>
 
