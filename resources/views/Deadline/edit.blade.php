@@ -11,10 +11,17 @@
                     <div class="form-group">
                         <label>Assessment naam : {{ $module->module_name }}</label>
                     </div>
-
                     <div class="form-group">
-                        <label>Deadline</label>
-                        <input type="date" name="deadline" value="{{ $module->assignment->deadline }}" class="form-validation form-control" required>
+                        <label for="deadline">Deadline</label>
+                        <input type="date" name="deadline" value="{{ date('d-M-y', strtotime($module->assignment->deadline))  }}" class="form-validation form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="select">Tags</label>
+                        <select multiple name="tags[]" class="form-control">
+                            @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="submit" value="Opslaan" class="btn btn-primary">
                 </form>

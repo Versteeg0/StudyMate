@@ -18,6 +18,7 @@ class CreateModuleTable extends Migration
             $table->string('module_name');
             $table->string('module_description');
             $table->string('coordinator');
+            $table->integer('isChecked');
             $table->timestamps();
         });
     }

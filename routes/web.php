@@ -43,6 +43,7 @@ Route::middleware(['checkdeadline'])->group(function () {
         Route::get('edit/{id}', 'DeadlineController@editPage')->name("deadline.editPage");
         Route::post('edit/{id}', 'DeadlineController@edit')->name("deadline.edit");
         Route::get('details/{id}', 'DeadlineController@details')->name("deadline.details");
+        Route::post('checked', 'DeadlineController@checked')->name("deadline.checked");
     });
 });
 

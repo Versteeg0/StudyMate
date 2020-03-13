@@ -11,7 +11,7 @@ class Tag extends Model
         return $this->belongsToMany(Assignment::class, 'assignment_tags');
     }
 
-    public function getAssignmentAttribute(){
+   public function getAssignmentAttribute(){
         return Tag::find($this->id)->assignments()-get();
     }
 }

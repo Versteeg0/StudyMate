@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Assignment;
 use \App\Module;
-use PhpParser\Node\Expr\AssignOp\Mod;
+use \App\Tag;
 
 class DeadlineController extends Controller
 {
@@ -16,11 +16,12 @@ class DeadlineController extends Controller
 
     public function editPage(Request $request, $iId) {
         $module = Module::find($iId);
+        $tags = Tag::all();
         if (is_null($module)) {
             return redirect()->route("deadline.index");
         }
         return view("deadline/edit", [
-            "module" => $module,
+            "module" => $module, "tags" => $tags
         ]);
     }
 
@@ -34,7 +35,8 @@ class DeadlineController extends Controller
             return redirect()->route("deadline.index");
         }
 
-        $module->assignment->deadline =$request->deadline;
+        $module->assignment->deadline = $request->deadline;
+        $module->assignment->tags()->sync(request('tags'));
         $module->assignment->update();
 
         return redirect()->route("deadline.index");
@@ -42,10 +44,17 @@ class DeadlineController extends Controller
 
     public function details(Request $request, $iId){
         $module = Module::find($iId);
+
+       // return(dd($assignment->tags));
         if (is_null($module)) {
             return redirect()->route("deadline.index");
-
         }
-        return view('deadline.detail', ['modules' => $module]);
+        return view('deadline.detail', ['module' => $module]);
+    }
+
+    public function checked(Request $request){
+        return(dd($request->all()));
+
+        return redirect()->route('deadline.index');
     }
 }
