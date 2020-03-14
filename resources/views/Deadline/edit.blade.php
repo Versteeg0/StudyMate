@@ -23,6 +23,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="isChecked">Afgerond</label>
+                        <input name="checkbox" type="checkbox">
+                    </div>
                     <input type="submit" value="Opslaan" class="btn btn-primary">
                 </form>
             </div>

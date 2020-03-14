@@ -8,12 +8,20 @@
                 <div class="header">
                     <h4>Welkom bij de Deadline Manager</h4>
                 </div>
-                <form class="form" method="post">
+                 <form class="form" action="{{route('deadline.sort')}}" method="post">
+                     @csrf
+                     <div class="form-group">
+                         <select name="sortName">
+                             <option value="Docent">Docent</option>
+                             <option value="Module">Module</option>
+                             <option value="Deadline">Deadline</option>
+                             <option value="Tag">Tag</option>
+                         </select>
 
+                        <input type="submit" value="Sorteren" class="btn btn-primary">
+                    </div>
                 </form>
-                <select name="sortName">
 
-                </select>
                 <table class="table table-dark">
                     <thead>
                         <th>Naam</th>
@@ -38,17 +46,20 @@
                                 @if(count($module->assignment->tags) > 0)
                                     @foreach($module->assignment->tags as $tag)
                                         {{$tag->tag_name}}
+                                        <br>
                                     @endforeach
                                 @else
                                     Geen tags ingesteld
                                 @endif
                             </td>
                             <td>
-                                @if($module->isChecked == 1)
-                                    <input type="checkbox" checked>
-                                @else
-                                    <input type="checkbox">
-                                @endif
+                                <div class="form-group">
+                                    @if($module->isChecked == 1)
+                                        <input type="checkbox"  disabled checked>
+                                    @else
+                                        <input name="checkbox" type="checkbox" disabled>
+                                    @endif
+                                </div>
                             </td>
                             <td><a href="{{ route('deadline.details', $module->id) }}" class="btn btn-primary">Bekijk</a></td>
                             <td><a href="{{ route('deadline.editPage', $module->id) }}" class="btn btn-secondary">Bewerk</a></td>
@@ -56,13 +67,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <form class="form" method="post">
-                    {{csrf_field()}}
-                 {{--   <a href="{{ route('deadline.checked') }}" class="btn btn-primary">Bewerk</a>--}}
-                    <input type="submit" ref="{{ route('deadline.checked') }}" value="Opslaan" class="btn btn-primary">
-                </form>
             </div>
         </div>
     </div>
 @endsection
-
