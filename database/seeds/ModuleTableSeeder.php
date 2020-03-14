@@ -16,6 +16,7 @@ class ModuleTableSeeder extends Seeder
         'module_description' => 'Websites bouwen met laravel en PHP',
         'coordinator' => 'Jasper',
         'isChecked' => '0',
+        'categorie' => 'Programmeren',
         ]);
 
         DB::table('modules')->insert([
@@ -23,6 +24,7 @@ class ModuleTableSeeder extends Seeder
             'module_description' => 'Magazijn manager bouwen met Javascript',
             'coordinator' => 'Stefan',
             'isChecked' => '0',
+            'categorie' => 'Programmeren',
         ]);
 
         DB::table('modules')->insert([
@@ -30,6 +32,7 @@ class ModuleTableSeeder extends Seeder
         'module_description' => 'Leren hoe je een eigen regex bouwt.',
         'coordinator' => 'Bob',
         'isChecked' => '0',
+        'categorie' => 'Programmeren',
         ]);
 
         DB::table('assignments')->insert([

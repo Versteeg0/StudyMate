@@ -69,7 +69,7 @@ class DeadlineController extends Controller
                 $modules = Module::with('assignment')->get()->sortBy('assignment.deadline');
                 break;
             case "Categorie":
-                $modules =  Module::with('assignment')->assignment()->tags()->first()->orderBy('tag.tag_name');
+                $modules = Module::orderBy('categorie')->get();
                 break;
         }
 

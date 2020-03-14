@@ -15,7 +15,7 @@
                              <option value="Docent">Docent</option>
                              <option value="Module">Module</option>
                              <option value="Deadline">Deadline</option>
-                             <option value="Tag">Tag</option>
+                             <option value="Categorie">Categorie</option>
                          </select>
 
                         <input type="submit" value="Sorteren" class="btn btn-primary">
@@ -27,6 +27,7 @@
                         <th>Naam</th>
                         <th >Coördinator</th>
                         <th >Deadline</th>
+                        <th >Categorie</th>
                         <th>Tags</th>
                         <th>Afgerond</th>
                         <th></th>
@@ -42,6 +43,7 @@
                             @else
                                 <td>{{date('d-m-Y', strtotime($module->assignment->deadline))}}</td>
                             @endif
+                            <td>{{$module->categorie}}</td>
                             <td>
                                 @if(count($module->assignment->tags) > 0)
                                     @foreach($module->assignment->tags as $tag)

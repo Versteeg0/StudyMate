@@ -13,19 +13,19 @@
                     </div>
                     <div class="form-group">
                         <label for="deadline">Deadline</label>
-                        <input type="date" name="deadline" value="{{ date('d-M-y', strtotime($module->assignment->deadline))  }}" class="form-validation form-control" required>
+                        <input type="date" class="form-control" name="deadline" value="{{ date('Y-m-d', strtotime($module->assignment->deadline)) }}" class="form-validation form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="select">Tags</label>
                         <select multiple name="tags[]" class="form-control">
                             @foreach($tags as $tag)
-                                <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                <option value="{{$tag->id}}" @if($module->assignment->tags->contains($tag))selected="selected"@endif>{{$tag->tag_name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="isChecked">Afgerond</label>
-                        <input name="checkbox" type="checkbox">
+                        <input name="checkbox" type="checkbox" @if($module->isChecked == 1)checked="checked"@endif >
                     </div>
                     <input type="submit" value="Opslaan" class="btn btn-primary">
                 </form>
