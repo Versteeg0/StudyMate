@@ -8,8 +8,6 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-        @component('component/formError')
-        @endcomponent
 
         <a href="{{ route('teacher.index') }}" class="btn btn-primary">Terug naar overzicht</a>
 

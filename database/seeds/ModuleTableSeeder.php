@@ -13,7 +13,11 @@ class ModuleTableSeeder extends Seeder
     {        DB::table('modules')->insert([
         'module_name' => 'PHP',
         'module_description' => 'Websites bouwen met laravel en PHP',
-        'coordinator' => 'Jasper'
+        'coordinator' => 10,
+        'is_my_teacher' => 10,
+        'module_category' => 'Programmeren',
+        'module_period' => 'Periode 4',
+        'module_ec' => 4
     ]);
     }
 }
