@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group">
-                            <a href="teacher.index" class="btn btn-primary">Bestand Beheer</a>
+                            <a href="file" class="btn btn-primary">Bestand Beheer</a>
                         </div>
 
                     </div>

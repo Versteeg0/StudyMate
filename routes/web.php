@@ -38,6 +38,12 @@ Route::middleware(['checkadmin'])->group(function () {
                 Route::get('delete/{id}', 'TeacherController@delete')->name('teacher.delete');
             });
 
+            Route::prefix('file')->group(function() {
+                Route::get('/', 'FileController@index')->name('file.index');
+                Route::get('create', 'FileController@createPage')->name('file.createpage');
+                Route::post('store', 'FileController@store')->name('file.store.post');
+            });
+
             Route::prefix('module')->group(function() {
                 Route::get('/', 'ModuleController@index')->name('module.index');
                 Route::get('create', 'ModuleController@createPage')->name('module.createpage');
@@ -47,11 +53,7 @@ Route::middleware(['checkadmin'])->group(function () {
                 Route::get('delete/{id}', 'ModuleController@delete')->name('module.delete');
             });
     });
-
-
 });
-
-
 
 Route::middleware(['checkdeadline'])->group(function () {
     Route::prefix('deadline')->group(function () {
