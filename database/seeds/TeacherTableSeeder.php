@@ -12,25 +12,25 @@ class TeacherTableSeeder extends Seeder
     public function run()
     {
         DB::table('teachers')->insert([
-            'first_name' => 'Stefan',
-            'prefix' => 'van',
-            'last_name' => 'Dockum',
+            'first_name' => encrypt('Stefan'),
+            'prefix' => encrypt('van'),
+            'last_name' => encrypt('Dockum'),
         ]);
 
         DB::table('teachers')->insert([
-            'first_name' => 'Jasper',
-            'prefix' => 'van',
-            'last_name' => 'Rosmalen',
+            'first_name' => encrypt('Jasper'),
+            'prefix' => encrypt('van'),
+            'last_name' => encrypt('Rosmalen'),
         ]);
 
         DB::table('teachers')->insert([
-            'first_name' => 'Stijn',
-            'last_name' => 'Smulders',
+            'first_name' => encrypt('Stijn'),
+            'last_name' => encrypt('Smulders'),
         ]);
 
         DB::table('teachers')->insert([
-            'first_name' => 'Bob',
-            'last_name' => 'Polis',
+            'first_name' => encrypt('Bob'),
+            'last_name' => encrypt('Polis'),
         ]);
     }
 }

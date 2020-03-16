@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Traits\Encryptable;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Expr\Assign;
 
