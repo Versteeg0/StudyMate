@@ -2,12 +2,14 @@
 
 
 @section('content')
+    @component('Component/formError')
+    @endcomponent
     <div class="container no-max-width">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
                 <form class="form" method="post">
-                    @csrf
+                    {{csrf_field()}}
                     <div class="form-group">
                         <label>Assessment naam : {{ $module->module_name }}</label>
                     </div>
@@ -24,8 +26,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="isChecked">Afgerond</label>
+                        <label for="isChecked">Afgerond</label> <br>
                         <input name="checkbox" type="checkbox" @if($module->isChecked == 1)checked="checked"@endif >
+                    </div>
+                    <div class="form-group">
+                        <label for="isChecked">Cijfer</label> <br>
+                        <input type="number" value="{{$module->grade}}" pattern="[0-9]+([\.][0-9]+)?" step="0.01" name="grade">
                     </div>
                     <input type="submit" value="Opslaan" class="btn btn-primary">
                 </form>
