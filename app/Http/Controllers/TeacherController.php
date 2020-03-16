@@ -32,7 +32,6 @@ class TeacherController extends Controller
         $oTeacher->last_name = $request->teacher_last_name;
 
         $oTeacher->save();
-
         return redirect()->route('teacher.index');
     }
 

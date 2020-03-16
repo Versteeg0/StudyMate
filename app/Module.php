@@ -24,5 +24,9 @@ class Module extends Model
         return $this->belongsTo(Teacher::class);
     }
 
+    public function File(){
+        return $this->hasOne(File::class);
+    }
+
 
 }
