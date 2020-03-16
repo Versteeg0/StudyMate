@@ -8,4 +8,8 @@ class File extends Model
 {
     protected $table = "file";
     protected $fillable = ['id', 'filename', 'filepath'];
+
+    public function module(){
+        return $this->belongsTo(Module::class);
+    }
 }
