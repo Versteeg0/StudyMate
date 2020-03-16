@@ -30,12 +30,28 @@
                             <input type="text" name="module_category" class="form-control" value="{{ $oModule->module_category}}">
                         </div>
                         <div class="form-group">
-                            <label>Coordinator</label>
-                            <input type="number" name="coordinator" class="form-control" value="{{ $oModule->coordinator}}">
+                            <label for="select">Docenten</label>
+                            <select multiple name="teachers[]" class="form-control">
+                                @foreach($aTeachers as $teacher)
+                                    <option value="{{$teacher->id}}" @if($oModule->teachers->contains($teacher))selected="selected"@endif>{{$teacher->first_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Leraar</label>
-                            <input type="number" name="is_my_teacher" class="form-control" value="{{ $oModule->is_my_teacher}}">
+                            <label>Coordinator</label>
+                            <select name="module_coordinator" class="form-control">
+                                @foreach($aTeachers as $teacher)
+                                    <option value="{{$teacher->id}}" @if($teacher->id == $oModule->coordinator) selected="selected" @endif>{{$teacher->first_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mijn Docent</label>
+                            <select name="module_is_my_teacher" class="form-control">
+                                @foreach($aTeachers as $teacher)
+                                    <option value="{{$teacher->id}}"  @if($teacher->id == $oModule->teacher_id) selected="selected" @endif>{{$teacher->first_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Periode</label>

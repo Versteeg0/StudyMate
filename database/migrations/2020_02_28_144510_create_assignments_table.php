@@ -21,7 +21,7 @@ class CreateAssignmentsTable extends Migration
             $table->string('tag')->nullable();
             $table->timestamps();
 
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
 
         });
     }

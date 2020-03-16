@@ -4,13 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+            @foreach($aPeriods as $aPeriod)
+                <div class="card">
+                    <div class="card-header">Periode {{$aPeriod}}</div>
 
-                <div class="card-body">
-                    Dashboard
+                    <div class="card-body">
+                        Dit is periode {{$aPeriod}}
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

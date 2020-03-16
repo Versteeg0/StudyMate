@@ -5,22 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Assignment;
 use \App\Module;
-use PhpParser\Node\Expr\AssignOp\Mod;
+use \App\Tag;
+use \App\Teacher;
 
 class DeadlineController extends Controller
 {
     public function index(){
-        $modules = Module::all();
-        return view('Deadline/index', ['modules' => $modules]);
+        $aModules = Module::all();
+        $aTeachers = Teacher::all();
+        return view('Deadline/index', ['modules' => $aModules, 'teachers' => $aTeachers]);
     }
 
     public function editPage(Request $request, $iId) {
         $module = Module::find($iId);
+        $tags = Tag::all();
         if (is_null($module)) {
             return redirect()->route("deadline.index");
         }
         return view("deadline/edit", [
-            "module" => $module,
+            "module" => $module, "tags" => $tags
         ]);
     }
 
@@ -33,8 +36,14 @@ class DeadlineController extends Controller
         if (is_null($module)) {
             return redirect()->route("deadline.index");
         }
-
-        $module->assignment->deadline =$request->deadline;
+        if(isset($request['checkbox'])){
+            $module->isChecked = 1;
+        }else{
+            $module->isChecked = 0;
+        }
+        $module->save();
+        $module->assignment->deadline = $request->deadline;
+        $module->assignment->tags()->sync(request('tags'));
         $module->assignment->update();
 
         return redirect()->route("deadline.index");
@@ -44,8 +53,28 @@ class DeadlineController extends Controller
         $module = Module::find($iId);
         if (is_null($module)) {
             return redirect()->route("deadline.index");
-
         }
-        return view('deadline.detail', ['modules' => $module]);
+        return view('deadline.detail', ['module' => $module]);
+    }
+
+    public function sort(Request $request){
+        $sortMethod = $request->sortName;
+        $modules = Module::all();
+        switch($sortMethod){
+            case "Module":
+                $modules = Module::orderBy('module_name')->get();
+                break;
+            case "Docent":
+                $modules = Module::with('teacher')->get()->sortBy('teacher.first_name');
+                break;
+            case "Deadline":
+                $modules = Module::with('assignment')->get()->sortBy('assignment.deadline');
+                break;
+            case "Categorie":
+                $modules = Module::orderBy('module_category')->get();
+                break;
+        }
+
+        return view('Deadline/index', ['modules' => $modules]);
     }
 }

@@ -3,8 +3,7 @@
 @section('content')
     <div class="container no-max-width">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-12">
                 <a href="{{ route('module.createpage') }}" class="btn btn-danger">
                     Module Toevoegen
                 </a>
@@ -24,15 +23,14 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($aModules as $oModule)
                         <tr>
                             <td>{{$oModule->id}}</td>
                             <td>{{$oModule->module_name}}</td>
                             <td>{{$oModule->module_description}}</td>
                             <td>{{$oModule->module_category}}</td>
-                            <td>{{$oModule->coordinator}}</td>
-                            <td>{{$oModule->is_my_teacher}}</td>
+                            <td>{{$aTeachers->find($oModule->coordinator)->first_name}}</td>
+                            <td>{{$oModule->teacher->first_name}}</td>
                             <td>{{$oModule->module_period}}</td>
                             <td>{{$oModule->module_ec}}</td>
                                 <td>
@@ -46,7 +44,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-2"></div>
         </div>
     </div>
 @endsection
