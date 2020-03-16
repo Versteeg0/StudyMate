@@ -13,6 +13,14 @@
             <form class="form" action="{{ route('file.create.post') }}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
+                    <label>Module</label>
+                    <select name="module" class="form-control" value="">
+                        @foreach($aModules as $module)
+                            <option value="{{$module->id}}">{{$module->module_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="file">Bestanden uploaden</label>
                     <input type="file" name="filepath" class="form-control-file">
                 </div>

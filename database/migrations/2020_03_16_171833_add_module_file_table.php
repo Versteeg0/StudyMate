@@ -13,11 +13,11 @@ class AddModuleFileTable extends Migration
      */
     public function up()
     {
-        /*Schema::table('modules', function (Blueprint $table) {
-            $table->unsignedBigInteger('file_id');
-            $table->foreign('file_id')->references('id')->on('files')
+        Schema::table('file', function (Blueprint $table) {
+            $table->unsignedBigInteger('module_id');
+            $table->foreign('module_id')->references('id')->on('modules')
                 ->onDelete('cascade');
-        });*/
+        });
     }
 
     /**
@@ -27,8 +27,8 @@ class AddModuleFileTable extends Migration
      */
     public function down()
     {
-       /* Schema::table('modules', function (Blueprint $table) {
-            $table->dropColumn('file_id');
-        });*/
+        Schema::table('files', function (Blueprint $table) {
+            $table->dropColumn('module_id');
+        });
     }
 }
