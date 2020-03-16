@@ -41,7 +41,7 @@ Route::middleware(['checkadmin'])->group(function () {
             Route::prefix('file')->group(function() {
                 Route::get('/', 'FileController@index')->name('file.index');
                 Route::get('create', 'FileController@createPage')->name('file.createpage');
-                Route::post('store', 'FileController@store')->name('file.store.post');
+                Route::post('create', 'FileController@create')->name('file.create.post');
             });
 
             Route::prefix('module')->group(function() {
