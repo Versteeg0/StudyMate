@@ -43,7 +43,7 @@
                             @else
                                 <td>{{date('d-m-Y', strtotime($module->assignment->deadline))}}</td>
                             @endif
-                            <td>{{$module->categorie}}</td>
+                            <td>{{$module->module_category}}</td>
                             <td>
                                 @if(count($module->assignment->tags) > 0)
                                     @foreach($module->assignment->tags as $tag)

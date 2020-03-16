@@ -3,8 +3,7 @@
 @section('content')
     <div class="container no-max-width">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-12">
                 <a href="{{ route('module.createpage') }}" class="btn btn-danger">
                     Module Toevoegen
                 </a>
@@ -24,7 +23,6 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($aModules as $oModule)
                         <tr>
                             <td>{{$oModule->id}}</td>
@@ -46,7 +44,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-2"></div>
         </div>
     </div>
 @endsection

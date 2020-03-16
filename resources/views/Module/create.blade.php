@@ -31,13 +31,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Coordinator</label>
-                            <input type="number" name="module_coordinator" class="form-control" value="{{ old('module_coordinator') }}">
+                            <label for="select">Docenten</label>
+                            <select multiple name="tags[]" class="form-control">
+                                @foreach($aTeachers as $teacher)
+                                    <option value="{{$teacher->id}}">{{$teacher->first_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label>Leraar</label>
-                            <input type="number" name="module_is_my_teacher" class="form-control" value="{{ old('module_is_my_teacher') }}">
+                            <label>Coordinator</label>
+                            <select name="module_coordinator" class="form-control" value="">
+                                @foreach($aTeachers as $teacher)
+                                    <option value="{{$teacher->id}}">{{$teacher->first_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mijn Docent</label>
+                            <select name="module_is_my_teacher" class="form-control" value="">
+                                @foreach($aTeachers as $teacher)
+                                    <option value="{{$teacher->id}}">{{$teacher->first_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">

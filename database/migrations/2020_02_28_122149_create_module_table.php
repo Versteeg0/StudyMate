@@ -17,7 +17,7 @@ class CreateModuleTable extends Migration
             $table->bigIncrements('id');
             $table->string('module_name');
             $table->string('module_description');
-            $table->string('coordinator');
+            $table->integer('coordinator');
             $table->integer('isChecked');
             $table->integer('is_my_teacher');
             $table->timestamps();

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Module;
+use \App\Teacher;
+use \App\Assignment;
+use PhpParser\Node\Expr\Assign;
 
 class ModuleController extends Controller
 {
@@ -16,7 +19,8 @@ class ModuleController extends Controller
     }
 
     public function createPage(Request $request) {
-        return view('module.create');
+        $aTeachers = Teacher::all();
+        return view('module.create', ['aTeachers' => $aTeachers]);
     }
 
     public function create(Request $request)
@@ -31,8 +35,9 @@ class ModuleController extends Controller
             'module_module_ec' => 'required|max:255'
         ]);
 
-        $oModule = new Module();
 
+
+        $oModule = new Module();
         $oModule->module_name = $request->module_module_name;
         $oModule->module_description = $request->module_module_description;
         $oModule->coordinator = $request->module_coordinator;
@@ -40,8 +45,12 @@ class ModuleController extends Controller
         $oModule->module_category = $request->module_module_category;
         $oModule->module_period = $request->module_module_period;
         $oModule->module_ec = $request->module_module_ec;
+        $oModule->isChecked = 0;
 
         $oModule->save();
+        $oAssignment = new Assignment();
+        $oAssignment->module()->associate($oModule);
+        $oAssignment->save();
 
         return redirect()->route('module.index');
     }

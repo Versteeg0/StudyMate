@@ -14,25 +14,34 @@ class ModuleTableSeeder extends Seeder
         DB::table('modules')->insert([
         'module_name' => 'PHP',
         'module_description' => 'Websites bouwen met laravel en PHP',
-        'coordinator' => 'Jasper',
+        'coordinator' => 1,
+        'is_my_teacher' => 1,
+        'module_category' => 'Programmeren 1',
+        'module_period' => '4',
+        'module_ec' => 4,
         'isChecked' => '0',
-        'categorie' => 'Programmeren',
         ]);
 
         DB::table('modules')->insert([
             'module_name' => 'JS',
             'module_description' => 'Magazijn manager bouwen met Javascript',
-            'coordinator' => 'Stefan',
+            'coordinator' => 1,
+            'is_my_teacher' => 1,
+            'module_category' => 'Programmeren 1',
+            'module_period' => '4',
+            'module_ec' => 4,
             'isChecked' => '0',
-            'categorie' => 'Programmeren',
         ]);
 
         DB::table('modules')->insert([
         'module_name' => 'REGEX',
         'module_description' => 'Leren hoe je een eigen regex bouwt.',
-        'coordinator' => 'Bob',
-        'isChecked' => '0',
-        'categorie' => 'Programmeren',
+            'coordinator' => 1,
+            'is_my_teacher' => 1,
+            'module_category' => 'Programmeren 1',
+            'module_period' => '4',
+            'module_ec' => 4,
+            'isChecked' => '0',
         ]);
 
         DB::table('assignments')->insert([
