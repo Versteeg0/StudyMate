@@ -59,7 +59,7 @@ class DeadlineController extends Controller
         $sortMethod = $request->sortName;
         $modules = Module::all();
         switch($sortMethod){
-            case "Naam":
+            case "Module":
                 $modules = Module::orderBy('module_name')->get();
                 break;
             case "Docent":
