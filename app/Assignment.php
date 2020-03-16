@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Module;
+use App\Tag;
 
 class Assignment extends Model
 {
@@ -12,11 +12,11 @@ class Assignment extends Model
     }
 
     public function tags(){
-        return $this->belongsToMany(Tag::class, 'assignment_tags');
+        return $this->belongsToMany(Tag::class, 'assignments_tags');
     }
 
-    public function getTagAttribute(){
-        return Assignment::find($this->id)->tags()-get();
+    public function getTagsAttribute(){
+        return Assignment::find($this->id)->tags()->get();
     }
 
     protected $fillable = [
