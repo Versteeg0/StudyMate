@@ -40,6 +40,7 @@ Route::middleware(['checkadmin'])->group(function () {
 
             Route::prefix('file')->group(function() {
                 Route::get('/', 'FileController@index')->name('file.index');
+                Route::get('download/{id}', 'FileController@download')->name('file.download');
                 Route::get('create', 'FileController@createPage')->name('file.createpage');
                 Route::post('create', 'FileController@create')->name('file.create.post');
             });

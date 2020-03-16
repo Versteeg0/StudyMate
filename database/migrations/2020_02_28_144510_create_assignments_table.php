@@ -17,7 +17,6 @@ class CreateAssignmentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('module_id');
             $table->datetime('deadline')->nullable();
-            $table->string('file')->nullable();
             $table->string('tag')->nullable();
             $table->timestamps();
 
