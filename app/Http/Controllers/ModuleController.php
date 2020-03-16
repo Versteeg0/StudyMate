@@ -21,6 +21,7 @@ class ModuleController extends Controller
 
     public function createPage(Request $request) {
         $aTeachers = Teacher::all();
+
         return view('module.create', ['aTeachers' => $aTeachers]);
     }
 
