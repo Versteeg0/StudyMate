@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $table = "file";
-    protected $fillable = ['id', 'filename', 'filepath'];
+    protected $fillable = ['id', 'filepath'];
 }

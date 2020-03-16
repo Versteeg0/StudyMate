@@ -6,16 +6,17 @@
         <div class="jumbotron">
             @component('component/formError')
             @endcomponent
+
             @if(Session::has('message'))
                 <p class="alert alert-info">{{Session::get('message')}} </p>
             @endif
-            <form action="{{ route('file.store.post') }}" method="POST" enctype="multipart/form-data">
+            <form class="form" action="{{ route('file.create.post') }}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="file">Bestanden uploaden</label>
-                    <input type="file" name="file" class="form-control-file" id="file">
+                    <input type="file" name="filepath" class="form-control-file">
                 </div>
-                <button type="submit" name="submit" class="btn btn-primary btn-lg">Opslaan</button>
+                <input type="submit" value="opslaan" name="submit" class="btn btn-primary btn-lg">
             </form>
         </div>
     </div>

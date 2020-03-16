@@ -14,7 +14,6 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Bestandsnaam</th>
                         <th>Filepath</th>
                         <th>Assignment NAAM OF ID?</th>
                     </tr>
@@ -24,14 +23,13 @@
                     @foreach($aFiles as $oFile)
                         <tr>
                             <td>{{$oFile->id}}</td>
-                            <td>{{$oFile->name}}</td>
                             <td>{{$oFile->filepath}}</td>
                             <td>
-                                <a href="{{ route('file.edit', $oFile->id) }}" class="btn btn-primary">Bewerk</a>
+                               {{-- <a href="{{ route('file.edit', $oFile->id) }}" class="btn btn-primary">Bewerk</a>--}}
 
                             </td>
                             <td>
-                                <a href="{{ route('file.delete', $oFile->id) }}" class="btn btn-danger">Verwijder bestand</a>
+                               {{-- <a href="{{ route('file.delete', $oFile->id) }}" class="btn btn-danger">Verwijder bestand</a>--}}
                             </td>
                         </tr>
                     @endforeach
