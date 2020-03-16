@@ -28,9 +28,12 @@ class DeadlineController extends Controller
     }
 
     public function edit(Request $request, $iId) {
-        $validateData = $request->validate([
-           'deadline' => 'required',
-        ]);
+        if(!empty($request->grade) || isset($_POST['checkbox'])){
+            $request->validate([
+                'grade' => 'numeric|between:5.50,10.00',
+                'checkbox' => 'accepted',
+            ]);
+        }
 
         $module = Module::find($iId);
         if (is_null($module)) {
@@ -41,11 +44,12 @@ class DeadlineController extends Controller
         }else{
             $module->isChecked = 0;
         }
+        $module->grade = $request->grade;
         $module->save();
         $module->assignment->deadline = $request->deadline;
+
         $module->assignment->tags()->sync(request('tags'));
         $module->assignment->update();
-
         return redirect()->route("deadline.index");
     }
 

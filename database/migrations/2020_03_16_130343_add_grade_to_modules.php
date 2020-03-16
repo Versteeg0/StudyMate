@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTeacherModuleTable extends Migration
+class AddGradeToModules extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddTeacherModuleTable extends Migration
     public function up()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers')
-                ->onDelete('cascade');
-
+            $table->decimal('grade')->nullable();
         });
     }
 
@@ -29,7 +26,7 @@ class AddTeacherModuleTable extends Migration
     public function down()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->dropColumn('teacher_id');
+            $table->dropColumn('grade');
         });
     }
 }

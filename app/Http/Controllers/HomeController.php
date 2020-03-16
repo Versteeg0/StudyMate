@@ -15,12 +15,22 @@ class HomeController extends Controller
     public function index()
     {
         $aModules = Module::all();
-        $aPeriods = array();
+        $aEC = array();
+        $totalEC = null;
+        $gainedEC = null;
         foreach($aModules as $module){
-            if(!in_array($module->module_period, $aPeriods)){
-                array_push($aPeriods, $module->module_period);
+            if($module->isChecked == 1){
+                $gainedEC = $gainedEC + $module->module_ec;
+                if(!in_array($module->module_period, $aEC)){
+                    $aEC[$module->module_period] = $module->module_ec;
+                }  else {
+                    $aEC[$module->module_period] =  $aEC[$module->module_period] + $module->module_ec;
+                }
             }
+            $totalEC = $totalEC + $module->module_ec;
         }
-        return view('home', ['aModules' => $aModules, 'aPeriods' => $aPeriods]);
+        $aPeriods = array_keys($aEC);
+
+        return view('home', ['aModules' => $aModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC]);
     }
 }
