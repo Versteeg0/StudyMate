@@ -48,6 +48,7 @@ Route::middleware(['checkdeadline'])->group(function () {
     Route::prefix('deadline')->group(function () {
         Route::get('/', 'DeadlineController@index')->name("deadline.index");
         Route::get('/index', 'DeadlineController@index');
+        Route::post('/index', 'DeadlineController@sort')->name("deadline.sort");
         Route::get('edit/{id}', 'DeadlineController@editPage')->name("deadline.editPage");
         Route::post('edit/{id}', 'DeadlineController@edit')->name("deadline.edit");
         Route::get('details/{id}', 'DeadlineController@details')->name("deadline.details");
