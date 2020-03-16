@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use \App\Assignment;
 use \App\Module;
 use \App\Tag;
+use \App\Teacher;
 
 class DeadlineController extends Controller
 {
     public function index(){
-        $modules = Module::all();
-        return view('Deadline/index', ['modules' => $modules]);
+        $aModules = Module::all();
+        $aTeachers = Teacher::all();
+        return view('Deadline/index', ['modules' => $aModules, 'teachers' => $aTeachers]);
     }
 
     public function editPage(Request $request, $iId) {
@@ -26,9 +28,12 @@ class DeadlineController extends Controller
     }
 
     public function edit(Request $request, $iId) {
-        $validateData = $request->validate([
-           'deadline' => 'required',
-        ]);
+        if(!empty($request->grade) || isset($_POST['checkbox'])){
+            $request->validate([
+                'grade' => 'numeric|between:5.50,10.00',
+                'checkbox' => 'accepted',
+            ]);
+        }
 
         $module = Module::find($iId);
         if (is_null($module)) {
@@ -39,11 +44,12 @@ class DeadlineController extends Controller
         }else{
             $module->isChecked = 0;
         }
+        $module->grade = $request->grade;
         $module->save();
         $module->assignment->deadline = $request->deadline;
+
         $module->assignment->tags()->sync(request('tags'));
         $module->assignment->update();
-
         return redirect()->route("deadline.index");
     }
 
@@ -63,13 +69,13 @@ class DeadlineController extends Controller
                 $modules = Module::orderBy('module_name')->get();
                 break;
             case "Docent":
-                $modules = Module::orderBy('coordinator')->get();
+                $modules = Module::with('teacher')->get()->sortBy('teacher.first_name');
                 break;
             case "Deadline":
                 $modules = Module::with('assignment')->get()->sortBy('assignment.deadline');
                 break;
             case "Categorie":
-                $modules = Module::orderBy('categorie')->get();
+                $modules = Module::orderBy('module_category')->get();
                 break;
         }
 

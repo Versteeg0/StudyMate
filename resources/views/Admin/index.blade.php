@@ -23,11 +23,11 @@
                         </div>
 
                         <div class="form-group">
-                            <a href="module.index" class="btn btn-primary">Module Beheer</a>
+                            <a href="module" class="btn btn-primary">Module Beheer</a>
                         </div>
 
                         <div class="form-group">
-                            <a href="teacher.index" class="btn btn-primary">Bestand Beheer</a>
+                            <a href="file" class="btn btn-primary">Bestand Beheer</a>
                         </div>
 
                     </div>

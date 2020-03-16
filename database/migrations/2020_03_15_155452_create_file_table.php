@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssignmentsTable extends Migration
+class CreateFileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignments', function (Blueprint $table) {
+        Schema::create('file', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('module_id');
-            $table->datetime('deadline')->nullable();
-            $table->string('tag')->nullable();
+            $table->string('filename');
+            $table->string('filepath');
             $table->timestamps();
-
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
-
         });
     }
 
@@ -32,6 +28,6 @@ class CreateAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignments');
+        Schema::dropIfExists('file');
     }
 }

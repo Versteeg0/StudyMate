@@ -25,7 +25,7 @@
                 <table class="table table-dark">
                     <thead>
                         <th>Naam</th>
-                        <th >Coördinator</th>
+                        <th >Docent</th>
                         <th >Deadline</th>
                         <th >Categorie</th>
                         <th>Tags</th>
@@ -37,13 +37,13 @@
                     @foreach($modules as $module)
                         <tr>
                             <td>{{$module->module_name}}</td>
-                            <td>{{$module->coordinator}}</td>
+                            <td>{{$module->teacher->first_name}}</td>
                             @if($module->assignment->deadline == null)
                                 <td>Deadline niet gezet</td>
                             @else
                                 <td>{{date('d-m-Y', strtotime($module->assignment->deadline))}}</td>
                             @endif
-                            <td>{{$module->categorie}}</td>
+                            <td>{{$module->module_category}}</td>
                             <td>
                                 @if(count($module->assignment->tags) > 0)
                                     @foreach($module->assignment->tags as $tag)

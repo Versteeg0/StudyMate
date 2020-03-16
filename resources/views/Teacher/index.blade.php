@@ -3,8 +3,7 @@
 @section('content')
     <div class="container no-max-width">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-12">
                 <a href="{{ route('teacher.createpage') }}" class="btn btn-danger">
                     Docent Toevoegen
                 </a>
@@ -29,6 +28,9 @@
                             <td>{{$oTeacher->last_name}}</td>
                                 <td>
                                     <a href="{{ route('teacher.edit', $oTeacher->id) }}" class="btn btn-primary">Bewerk</a>
+
+                                </td>
+                                <td>
                                     <a href="{{ route('teacher.delete', $oTeacher->id) }}" class="btn btn-danger">Verwijder</a>
                                 </td>
                         </tr>
@@ -36,7 +38,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-2"></div>
         </div>
     </div>
 @endsection

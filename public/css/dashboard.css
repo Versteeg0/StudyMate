@@ -1,0 +1,9 @@
+.progressdiv{
+    margin-top: 100px;
+    text-align: center;
+}
+
+.progressdiv progress{
+    width: 400px;
+    height: 50px;
+}
