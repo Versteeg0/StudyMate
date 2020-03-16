@@ -13,8 +13,9 @@ class ModuleController extends Controller
     public function index()
     {
         $aModules = Module::all();
+        $aTeachers = Teacher::all();
         return view('Module/index', [
-            'aModules' => $aModules
+            'aModules' => $aModules, 'aTeachers' => $aTeachers
         ]);
     }
 
@@ -29,6 +30,7 @@ class ModuleController extends Controller
             'module_module_name' => 'required|max:255',
             'module_module_description' => 'required|max:255',
             'module_coordinator' => 'required|max:255',
+            'teachers' => 'required|min:1',
             'module_is_my_teacher' => 'required|max:255',
             'module_module_category' => 'required|max:255',
             'module_module_period' => 'required|max:255',
@@ -41,13 +43,14 @@ class ModuleController extends Controller
         $oModule->module_name = $request->module_module_name;
         $oModule->module_description = $request->module_module_description;
         $oModule->coordinator = $request->module_coordinator;
-        $oModule->is_my_teacher = $request->module_is_my_teacher;
         $oModule->module_category = $request->module_module_category;
         $oModule->module_period = $request->module_module_period;
         $oModule->module_ec = $request->module_module_ec;
         $oModule->isChecked = 0;
-
+        $oModule->teacher()->associate(Teacher::find($request->module_is_my_teacher))->save();
         $oModule->save();
+        $oModule->teachers()->sync(request('teachers'));
+
         $oAssignment = new Assignment();
         $oAssignment->module()->associate($oModule);
         $oAssignment->save();
@@ -57,8 +60,8 @@ class ModuleController extends Controller
 
     public function editPage($iId) {
         $oModule = Module::find($iId);
-
-        return view('module.edit', ['oModule' => $oModule]);
+        $aTeachers = Teacher::all();
+        return view('module.edit', ['oModule' => $oModule, 'aTeachers' => $aTeachers]);
     }
 
     public function edit(Request $request ,$iId)
@@ -66,8 +69,9 @@ class ModuleController extends Controller
         $request->validate([
            'module_name' => 'required|max:255',
            'module_description' => 'required|max:255',
-           'coordinator' => 'required|max:255',
-           'is_my_teacher' => 'required|max:255',
+           'module_coordinator' => 'required|max:255',
+            'teachers' => 'required|min:1',
+            'module_is_my_teacher' => 'required|max:255',
            'module_category' => 'required|max:255',
            'module_period' => 'required|max:255',
            'module_ec' => 'required|max:255',
@@ -81,12 +85,12 @@ class ModuleController extends Controller
 
         $oModule->module_name = $request->get('module_name');
         $oModule->module_description = $request->get('module_description');
-        $oModule->coordinator = $request->get('coordinator');
-        $oModule->is_my_teacher = $request->get('is_my_teacher');
+        $oModule->coordinator = $request->get('module_coordinator');
         $oModule->module_category = $request->get('module_category');
         $oModule->module_period = $request->get('module_period');
         $oModule->module_ec = $request->get('module_ec');
-
+        $oModule->teachers()->sync(request('teachers'));
+        $oModule->teacher()->associate(Teacher::find($request->module_is_my_teacher))->save();
         $oModule->update();
 
         return redirect()->route('module.index');

@@ -29,8 +29,8 @@
                             <td>{{$oModule->module_name}}</td>
                             <td>{{$oModule->module_description}}</td>
                             <td>{{$oModule->module_category}}</td>
-                            <td>{{$oModule->coordinator}}</td>
-                            <td>{{$oModule->is_my_teacher}}</td>
+                            <td>{{$aTeachers->find($oModule->coordinator)->first_name}}</td>
+                            <td>{{$oModule->teacher->first_name}}</td>
                             <td>{{$oModule->module_period}}</td>
                             <td>{{$oModule->module_ec}}</td>
                                 <td>

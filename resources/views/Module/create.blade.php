@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                             <label for="select">Docenten</label>
-                            <select multiple name="tags[]" class="form-control">
+                            <select multiple name="teachers[]" class="form-control">
                                 @foreach($aTeachers as $teacher)
                                     <option value="{{$teacher->id}}">{{$teacher->first_name}}</option>
                                 @endforeach

@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use \App\Assignment;
 use \App\Module;
 use \App\Tag;
+use \App\Teacher;
 
 class DeadlineController extends Controller
 {
     public function index(){
-        $modules = Module::all();
-        return view('Deadline/index', ['modules' => $modules]);
+        $aModules = Module::all();
+        $aTeachers = Teacher::all();
+        return view('Deadline/index', ['modules' => $aModules, 'teachers' => $aTeachers]);
     }
 
     public function editPage(Request $request, $iId) {
@@ -63,13 +65,13 @@ class DeadlineController extends Controller
                 $modules = Module::orderBy('module_name')->get();
                 break;
             case "Docent":
-                $modules = Module::orderBy('coordinator')->get();
+                $modules = Module::with('teacher')->get()->sortBy('teacher.first_name');
                 break;
             case "Deadline":
                 $modules = Module::with('assignment')->get()->sortBy('assignment.deadline');
                 break;
             case "Categorie":
-                $modules = Module::orderBy('categorie')->get();
+                $modules = Module::orderBy('module_category')->get();
                 break;
         }
 

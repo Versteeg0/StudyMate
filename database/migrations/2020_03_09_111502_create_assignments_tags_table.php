@@ -18,7 +18,7 @@ class CreateAssignmentsTagsTable extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('assignment_id');
             $table->foreign('tag_id')->references('id')->on('tags');
-            $table->foreign('assignment_id')->references('id')->on('assignments');
+            $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade');
             $table->timestamps();
         });
     }
