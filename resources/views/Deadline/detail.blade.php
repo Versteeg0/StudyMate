@@ -18,8 +18,10 @@
                     <h3>{{date('d-m-Y', strtotime($module->assignment->deadline))}}</h3>
                 @endif
                 <br>
-                <h3>Coördinator: </h3>
-                <h3>{{$module->coordinator}}</h3>
+                <h3>Te verdienen EC:</h3>
+                <h3>{{$module->module_ec}}</h3>
+                <h3>Docent: </h3>
+                <h3>{{$module->teacher->first_name}}</h3>
                 <br>
                 <h4>Beschrijving:</h4>
                 <p>{{$module->module_description}}</p>

@@ -4,7 +4,7 @@
     <div class="container no-max-width">
         <div class="row">
             <div class="col-12">
-                <a href="{{ route('module.createpage') }}" class="btn btn-danger">
+                <a href="{{ route('module.createpage') }}" id="moduleToevoegen" class="btn btn-danger">
                     Module Toevoegen
                 </a>
 
