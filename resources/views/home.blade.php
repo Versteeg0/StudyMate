@@ -8,7 +8,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 justify-content-center">
+            <h4>Afgeronden modules per periode</h4>
             @foreach($aPeriods as $aPeriod)
                 <div class="card">
                     <div class="card-header">Periode {{$aPeriod}} </div>
@@ -46,13 +47,11 @@
         <div class="col-12 progressdiv">
             <h2>Progressbar</h2>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="{{$gainedEC}}"
-                     aria-valuemin="0" aria-valuemax="{{$totalEC}}" style="width:70%">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{$gainedEC}}"  aria-valuemin="0" aria-valuemax="{{$totalEC}}" style="width:{{$percentageEC}}%">
                     Behaald: {{$gainedEC}} van de {{$totalEC}}
                 </div>
             </div>
         </div>
-
     </div>
 
 

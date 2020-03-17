@@ -30,7 +30,7 @@ class HomeController extends Controller
             $totalEC = $totalEC + $module->module_ec;
         }
         $aPeriods = array_keys($aEC);
-
-        return view('home', ['aModules' => $aModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC]);
+        $aPercentage = ($gainedEC * 100) / $totalEC;
+        return view('home', ['aModules' => $aModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC, 'percentageEC' => $aPercentage]);
     }
 }
