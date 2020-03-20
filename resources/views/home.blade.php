@@ -21,6 +21,7 @@
                                         <th>Naam</th>
                                         <th>Omschrijving</th>
                                         <th>Leraar</th>
+                                        <th>Blok</th>
                                         <th>Cijfer</th>
                                         <th>Totale EC</th>
                                         <th>Gekregen EC</th>
@@ -33,6 +34,7 @@
                                                 <td>{{$oModule->module_name}}</td>
                                                 <td>{{$oModule->module_description}}</td>
                                                 <td>{{$oModule->teacher->first_name}}</td>
+                                                <td>{{$oModule->module_block}}</td>
                                                 <td>{{$oModule->getAverageGradeAttribute()}}</td>
                                                 <td>{{$oModule->getTotalECAttribute()}}</td>
                                                 <td>{{$oModule->getEarnedECAttribute()}}</td>
@@ -55,10 +57,5 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 </div>
 @endsection
