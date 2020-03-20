@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label>Periode</label>
-                            <input type="text" name="module_period" class="form-control" value="{{ $oModule->module_period}}">
+                            <input type="number" name="module_period" class="form-control" value="{{ $oModule->module_period}}">
                         </div>
                         <div class="form-group">
                             <label>Blok</label>
