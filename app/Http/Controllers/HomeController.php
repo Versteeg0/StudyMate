@@ -16,20 +16,24 @@ class HomeController extends Controller
     {
         $aModules = Module::all();
         $aEC = array();
+        $aFinishedModules = array();
         $totalEC = null;
         $gainedEC = null;
         foreach($aModules as $oModule){
-            foreach($oModule->assignments as $oAssignment) {
-                if($oAssignment->isChecked == 1){
-                    $gainedEC = $gainedEC + $oAssignment->ec;
-                    if(!in_array($oModule->module_period, $aEC)){
-                        $aEC[$oModule->module_period] = $oAssignment->ec;
-                    }  else {
-                        $aEC[$oModule->module_period] =  $aEC[$oModule->module_period] + $oModule->module_ec;
-                    }
-                }
-                $totalEC = $totalEC + $oAssignment->ec;
+            if($oModule->isFinishedAttribute() == true){
+                array_push($aFinishedModules, $oModule);
 
+                foreach($oModule->assignments as $oAssignment) {
+                    if($oAssignment->isChecked == 1){
+                        $gainedEC = $gainedEC + $oAssignment->ec;
+                        if(!in_array($oModule->module_period, $aEC)){
+                            $aEC[$oModule->module_period] = $oAssignment->ec;
+                        }  else {
+                            $aEC[$oModule->module_period] = $aEC[$oModule->module_period] + $oAssignment->ec;
+                        }
+                    }
+                    $totalEC = $totalEC + $oAssignment->ec;
+                }
             }
         }
         $aPeriods = array_keys($aEC);
@@ -38,6 +42,7 @@ class HomeController extends Controller
         }else{
             $aPercentage = 100;
         }
-        return view('home', ['aModules' => $aModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC, 'percentageEC' => $aPercentage]);
+     //   dd($aEC);
+        return view('home', ['aModules' => $aFinishedModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC, 'percentageEC' => $aPercentage]);
     }
 }

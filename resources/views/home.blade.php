@@ -14,35 +14,35 @@
                 <div class="card">
                     <div class="card-header">Periode {{$aPeriod}} </div>
                     <div class="card-body">
-                        <table class="table table-dark">
-                            <p/>
-                            <thead>
-                            <tr>
-                                <th>Naam</th>
-                                <th>Omschrijving</th>
-                                <th>Leraar</th>
-                                <th>Cijfer</th>
-                                <th>EC</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($aModules as $oModule)
+                                <table class="table table-dark">
+                                    <p/>
+                                    <thead>
+                                    <tr>
+                                        <th>Naam</th>
+                                        <th>Omschrijving</th>
+                                        <th>Leraar</th>
+                                        <th>Cijfer</th>
+                                        <th>Totale EC</th>
+                                        <th>Gekregen EC</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($aModules as $oModule)
                                         @if($oModule->module_period == $aPeriod)
                                             <tr>
                                                 <td>{{$oModule->module_name}}</td>
                                                 <td>{{$oModule->module_description}}</td>
                                                 <td>{{$oModule->teacher->first_name}}</td>
-                                                <td>{{$oModule->grade}}</td>
-                                                <td>{{$oModule->module_ec}}</td>
+                                                <td>{{$oModule->getAverageGradeAttribute()}}</td>
+                                                <td>{{$oModule->getTotalECAttribute()}}</td>
+                                                <td>{{$oModule->getEarnedECAttribute()}}</td>
                                             </tr>
                                         @endif
-                                    </div>
-                                </div>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                     Behaalde EC deze periode: {{$aEC[$aPeriod]}}
+                    </div>
                 </div>
             @endforeach
         </div>

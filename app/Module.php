@@ -28,5 +28,45 @@ class Module extends Model
         return $this->hasOne(File::class);
     }
 
+    public function getTotalECAttribute(){
+        $totalEC = 0;
+        foreach($this->assignments as $assignment){
+            $totalEC = $totalEC + $assignment->ec;
+        }
+        return $totalEC;
+    }
+
+    public function getEarnedECAttribute(){
+        $earnedEC = 0;
+        foreach($this->assignments as $assignment){
+            if($assignment->isChecked == true){
+                $earnedEC = $earnedEC + $assignment->ec;
+            }
+        }
+        return $earnedEC;
+    }
+
+    public function getAverageGradeAttribute(){
+        $avgGrade = 0;
+        $gradedAmount = 0;
+        foreach($this->assignments as $assignment){
+            if($assignment->isChecked == true){
+                $avgGrade = $avgGrade + $assignment->grade;
+                $gradedAmount++;
+            }
+        }
+        return $avgGrade / $gradedAmount;
+    }
+
+    public function isFinishedAttribute(){
+        foreach($this->assignments as $assignment){
+            if($assignment->isChecked == true){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 }
