@@ -18,16 +18,19 @@ class HomeController extends Controller
         $aEC = array();
         $totalEC = null;
         $gainedEC = null;
-        foreach($aModules as $module){
-            if($module->isChecked == 1){
-                $gainedEC = $gainedEC + $module->module_ec;
-                if(!in_array($module->module_period, $aEC)){
-                    $aEC[$module->module_period] = $module->module_ec;
-                }  else {
-                    $aEC[$module->module_period] =  $aEC[$module->module_period] + $module->module_ec;
+        foreach($aModules as $oModule){
+            foreach($oModule->assignments as $oAssignment) {
+                if($oAssignment->isChecked == 1){
+                    $gainedEC = $gainedEC + $oAssignment->ec;
+                    if(!in_array($oModule->module_period, $aEC)){
+                        $aEC[$oModule->module_period] = $oAssignment->ec;
+                    }  else {
+                        $aEC[$oModule->module_period] =  $aEC[$oModule->module_period] + $oModule->module_ec;
+                    }
                 }
+                $totalEC = $totalEC + $oAssignment->ec;
+
             }
-            $totalEC = $totalEC + $module->module_ec;
         }
         $aPeriods = array_keys($aEC);
         if($totalEC > 0){

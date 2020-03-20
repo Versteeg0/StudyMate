@@ -27,15 +27,17 @@
                             </thead>
                             <tbody>
                             @foreach($aModules as $oModule)
-                                @if($oModule->module_period == $aPeriod)
-                                <tr>
-                                    <td>{{$oModule->module_name}}</td>
-                                    <td>{{$oModule->module_description}}</td>
-                                    <td>{{$oModule->teacher->first_name}}</td>
-                                    <td>{{$oModule->grade}}</td>
-                                    <td>{{$oModule->module_ec}}</td>
-                                </tr>
-                                @endif
+                                        @if($oModule->module_period == $aPeriod)
+                                            <tr>
+                                                <td>{{$oModule->module_name}}</td>
+                                                <td>{{$oModule->module_description}}</td>
+                                                <td>{{$oModule->teacher->first_name}}</td>
+                                                <td>{{$oModule->grade}}</td>
+                                                <td>{{$oModule->module_ec}}</td>
+                                            </tr>
+                                        @endif
+                                    </div>
+                                </div>
                             @endforeach
                             </tbody>
                         </table>
