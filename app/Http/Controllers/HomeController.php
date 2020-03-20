@@ -26,7 +26,7 @@ class HomeController extends Controller
                 foreach($oModule->assignments as $oAssignment) {
                     if($oAssignment->isChecked == 1){
                         $gainedEC = $gainedEC + $oAssignment->ec;
-                        if(!in_array($oModule->module_period, $aEC)){
+                        if(!array_key_exists($oModule->module_period, $aEC)){
                             $aEC[$oModule->module_period] = $oAssignment->ec;
                         }  else {
                             $aEC[$oModule->module_period] = $aEC[$oModule->module_period] + $oAssignment->ec;
@@ -42,7 +42,6 @@ class HomeController extends Controller
         }else{
             $aPercentage = 100;
         }
-     //   dd($aEC);
         return view('home', ['aModules' => $aFinishedModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC, 'percentageEC' => $aPercentage]);
     }
 }
