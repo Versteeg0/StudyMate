@@ -34,8 +34,8 @@ class ModuleController extends Controller
             'teachers' => 'required|min:1',
             'module_is_my_teacher' => 'required|max:255',
             'module_module_category' => 'required|max:255',
-            'module_module_period' => 'required|max:255',
-            'module_module_ec' => 'required|max:255'
+            'module_module_period' => 'required|integer',
+            'module_block' => 'required|integer'
         ]);
 
 
@@ -46,15 +46,10 @@ class ModuleController extends Controller
         $oModule->coordinator = $request->module_coordinator;
         $oModule->module_category = $request->module_module_category;
         $oModule->module_period = $request->module_module_period;
-        $oModule->module_ec = $request->module_module_ec;
-        $oModule->isChecked = 0;
+        $oModule->module_block = $request->module_block;
         $oModule->teacher()->associate(Teacher::find($request->module_is_my_teacher))->save();
         $oModule->save();
         $oModule->teachers()->sync(request('teachers'));
-
-        $oAssignment = new Assignment();
-        $oAssignment->module()->associate($oModule);
-        $oAssignment->save();
 
         return redirect()->route('module.index');
     }
@@ -71,11 +66,11 @@ class ModuleController extends Controller
            'module_name' => 'required|max:255',
            'module_description' => 'required|max:255',
            'module_coordinator' => 'required|max:255',
-            'teachers' => 'required|min:1',
-            'module_is_my_teacher' => 'required|max:255',
+           'teachers' => 'required|min:1',
+           'module_is_my_teacher' => 'required|max:255',
            'module_category' => 'required|max:255',
-           'module_period' => 'required|max:255',
-           'module_ec' => 'required|max:255',
+           'module_module_period' => 'required|integer',
+           'module_block' => 'required|integer'
         ]);
 
         $oModule = Module::find($iId);
@@ -89,7 +84,7 @@ class ModuleController extends Controller
         $oModule->coordinator = $request->get('module_coordinator');
         $oModule->module_category = $request->get('module_category');
         $oModule->module_period = $request->get('module_period');
-        $oModule->module_ec = $request->get('module_ec');
+        $oModule->module_block = $request->get('module_block');
         $oModule->teachers()->sync(request('teachers'));
         $oModule->teacher()->associate(Teacher::find($request->module_is_my_teacher))->save();
         $oModule->update();

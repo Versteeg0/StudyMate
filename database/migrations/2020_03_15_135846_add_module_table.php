@@ -16,7 +16,7 @@ class AddModuleTable extends Migration
         Schema::table('modules', function (Blueprint $table) {
             $table->string('module_category');
             $table->integer('module_period');
-            $table->integer('module_ec');
+            $table->integer('module_block');
         });
     }
 
@@ -31,6 +31,7 @@ class AddModuleTable extends Migration
             $table->dropColumn('module_category');
             $table->dropColumn('module_period');
             $table->dropColumn('module_ec');
+            $table->dropColumn('module_block');
         });
     }
 }

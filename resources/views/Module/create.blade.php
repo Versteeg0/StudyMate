@@ -63,8 +63,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>EC</label>
-                            <input type="number" name="module_module_ec" class="form-control" value="{{ old('module_module_ec') }}">
+                            <label>Blok</label>
+                            <input type="number" name="module_block" class="form-control" value="{{ old('module_block') }}">
                         </div>
 
                         <div class="form-group">

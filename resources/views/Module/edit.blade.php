@@ -58,8 +58,8 @@
                             <input type="text" name="module_period" class="form-control" value="{{ $oModule->module_period}}">
                         </div>
                         <div class="form-group">
-                            <label>EC</label>
-                            <input type="number" name="module_ec" class="form-control" value="{{ $oModule->module_ec}}">
+                            <label>Blok</label>
+                            <input type="number" name="module_block" class="form-control" value="{{ $oModule->module_block}}">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Module wijzigen">

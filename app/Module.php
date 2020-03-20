@@ -16,8 +16,8 @@ class Module extends Model
         return Module::find($this->id)->teachers()->get();
     }
 
-    public function assignment(){
-        return $this->hasOne(Assignment::class);
+    public function assignments(){
+        return $this->hasMany(Assignment::class);
     }
 
     public function teacher(){
