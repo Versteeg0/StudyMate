@@ -4,6 +4,7 @@
     <div class="container no-max-width">
         <div class="row">
             <div class="col-12">
+                <h1 name="Docent Overzicht">Docent Overzicht</h1>
                 <a href="{{ route('teacher.createpage') }}" class="btn btn-danger">
                     Docent Toevoegen
                 </a>
