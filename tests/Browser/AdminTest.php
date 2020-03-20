@@ -48,4 +48,12 @@ class AdminTest extends DuskTestCase
                 ->assertPresent('#bestandUploaden');
         });
     }
+
+    public function testAssignmentOverview(){
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(user::where('email', 'admin@gmail.com')->First());
+            $browser->visit('/admin/assignment')
+                ->assertPresent('#assignmentAdd');
+        });
+    }
 }
