@@ -7,23 +7,23 @@ use \App\Assignment;
 use \App\Module;
 use \App\Tag;
 use \App\Teacher;
+use PhpParser\Node\Expr\Assign;
 
 class DeadlineController extends Controller
 {
     public function index(){
-        $aModules = Module::all();
-        $aTeachers = Teacher::all();
-        return view('Deadline/index', ['modules' => $aModules, 'teachers' => $aTeachers]);
+        $aAssignment = Assignment::all();
+        return view('Deadline/index', ['aAssignments' => $aAssignment]);
     }
 
     public function editPage(Request $request, $iId) {
-        $module = Module::find($iId);
-        $tags = Tag::all();
-        if (is_null($module)) {
+        $oAssignment = Assignment::find($iId);
+        $aTags = Tag::all();
+        if (is_null($oAssignment)) {
             return redirect()->route("deadline.index");
         }
         return view("deadline/edit", [
-            "module" => $module, "tags" => $tags
+            "oAssignment" => $oAssignment, "tags" => $aTags
         ]);
     }
 
@@ -35,50 +35,50 @@ class DeadlineController extends Controller
             ]);
         }
 
-        $module = Module::find($iId);
-        if (is_null($module)) {
+        $oAssignment = Assignment::find($iId);
+        if (is_null($oAssignment)) {
             return redirect()->route("deadline.index");
         }
         if(isset($request['checkbox'])){
-            $module->isChecked = 1;
+            $oAssignment->isChecked = 1;
         }else{
-            $module->isChecked = 0;
+            $oAssignment->isChecked = 0;
         }
-        $module->grade = $request->grade;
-        $module->save();
-        $module->assignment->deadline = $request->deadline;
+        $oAssignment->grade = $request->grade;
+        $oAssignment->deadline = $request->deadline;
+        $oAssignment->save();
 
-        $module->assignment->tags()->sync(request('tags'));
-        $module->assignment->update();
+
+        $oAssignment->tags()->sync(request('tags'));
         return redirect()->route("deadline.index");
     }
 
     public function details(Request $request, $iId){
-        $module = Module::find($iId);
-        if (is_null($module)) {
+        $oAssignment = Assignment::find($iId);
+        if (is_null($oAssignment)) {
             return redirect()->route("deadline.index");
         }
-        return view('deadline.detail', ['module' => $module]);
+        return view('deadline.detail', ['oAssignment' => $oAssignment]);
     }
 
     public function sort(Request $request){
         $sortMethod = $request->sortName;
-        $modules = Module::all();
+        $aAssignments = Assignment::all();
         switch($sortMethod){
             case "Module":
-                $modules = Module::orderBy('module_name')->get();
+                $aAssignments = Assignment::with('module')->get()->sortBy('module.module_name');
                 break;
             case "Docent":
-                $modules = Module::with('teacher')->get()->sortBy('teacher.first_name');
+                $aAssignments = Assignment::with('module')->get()->sortBy('module.teacher_id');
                 break;
             case "Deadline":
-                $modules = Module::with('assignment')->get()->sortBy('assignment.deadline');
+                $aAssignments = Assignment::all()->sortBy('deadline');
                 break;
             case "Categorie":
-                $modules = Module::orderBy('module_category')->get();
+                $aAssignments = Assignment::with('module')->get()->sortBy('module.module_category');
                 break;
         }
 
-        return view('Deadline/index', ['modules' => $modules]);
+        return view('Deadline/index', ['aAssignments' => $aAssignments]);
     }
 }

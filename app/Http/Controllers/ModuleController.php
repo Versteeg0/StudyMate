@@ -69,7 +69,7 @@ class ModuleController extends Controller
            'teachers' => 'required|min:1',
            'module_is_my_teacher' => 'required|max:255',
            'module_category' => 'required|max:255',
-           'module_module_period' => 'required|integer',
+           'module_period' => 'required|integer',
            'module_block' => 'required|integer'
         ]);
 

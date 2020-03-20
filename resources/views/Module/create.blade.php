@@ -59,7 +59,7 @@
 
                         <div class="form-group">
                             <label>Periode</label>
-                            <input type="text" name="module_module_period" class="form-control" value="{{ old('module_module_period') }}">
+                            <input type="number" name="module_module_period" class="form-control" value="{{ old('module_module_period') }}">
                         </div>
 
                         <div class="form-group">
