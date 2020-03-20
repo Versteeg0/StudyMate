@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Assignment;
 use App\Tag;
 
-class Module extends Model
+class Subject extends Model
 {
     public function teachers(){
-        return  $this->belongsToMany(Teacher::class, 'module_teacher');
+        return  $this->belongsToMany(Teacher::class, 'subject_teacher');
     }
 
     public function getTeachersAttribute(){
-        return Module::find($this->id)->teachers()->get();
+        return Subject::find($this->id)->teachers()->get();
     }
 
     public function assignment(){

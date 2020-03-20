@@ -7,8 +7,8 @@ use App\Tag;
 
 class Assignment extends Model
 {
-    public function module(){
-        return $this->belongsTo(Module::class);
+    public function subject(){
+        return $this->belongsTo(Subject::class);
     }
 
     public function tags(){

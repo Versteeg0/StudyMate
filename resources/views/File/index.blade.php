@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{$oFile->id}}</td>
                             <td>{{$oFile->filename}}</td>
-                            <td>{{$oFile->module->module_name}}</td>
+                            <td>{{$oFile->subject->subject_name}}</td>
                             <td>
                                 <a href="{{ route('file.download', $oFile->id) }}" class="btn btn-light">Download</a>
                             </td>

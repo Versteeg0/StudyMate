@@ -25,7 +25,7 @@ class DeadlineTest extends DuskTestCase
             $browser->loginAs(User::where('email', 'deadline@gmail.com')->First());
             $browser->visit('/deadline/index')
                     ->clickLink('Bekijk')
-                    ->assertSee('Module:');
+                    ->assertSee('Subject:');
         });
     }
 }

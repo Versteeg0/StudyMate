@@ -8,26 +8,26 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-                <h1>Module: </h1>
-                <h2>{{$module->module_name}}</h2>
+                <h1>Vak: </h1>
+                <h2>{{$subject->subject_name}}</h2>
                 <br>
                 <h3>Deadline: </h3>
-                @if($module->assignment->deadline == null)
+                @if($subject->assignment->deadline == null)
                     <h3>Niet gezet</h3>
                 @else
-                    <h3>{{date('d-m-Y', strtotime($module->assignment->deadline))}}</h3>
+                    <h3>{{date('d-m-Y', strtotime($subject->assignment->deadline))}}</h3>
                 @endif
                 <br>
                 <h3>Te verdienen EC:</h3>
-                <h3>{{$module->module_ec}}</h3>
+                <h3>{{$subject->subject_ec}}</h3>
                 <h3>Docent: </h3>
-                <h3>{{$module->teacher->first_name}}</h3>
+                <h3>{{$subject->teacher->first_name}}</h3>
                 <br>
                 <h4>Beschrijving:</h4>
-                <p>{{$module->module_description}}</p>
+                <p>{{$subject->subject_description}}</p>
                 <br>
                 <h4>Tags:</h4>
-                    @foreach($module->assignment->tags as $tag)
+                    @foreach($subject->assignment->tags as $tag)
                         <h5>{{$tag->tag_name}}</h5>
                     @endforeach
             </div>

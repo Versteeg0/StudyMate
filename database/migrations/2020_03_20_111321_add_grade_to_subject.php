@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddModuleFileTable extends Migration
+class AddGradeToSubject extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddModuleFileTable extends Migration
      */
     public function up()
     {
-        Schema::table('file', function (Blueprint $table) {
-            $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules')
-                ->onDelete('cascade');
+        Schema::table('subjects', function (Blueprint $table) {
+            $table->decimal('grade')->nullable();
         });
     }
 
@@ -27,8 +25,8 @@ class AddModuleFileTable extends Migration
      */
     public function down()
     {
-        Schema::table('files', function (Blueprint $table) {
-            $table->dropColumn('module_id');
+        Schema::table('subjects', function (Blueprint $table) {
+            $table->dropColumn('grade');
         });
     }
 }

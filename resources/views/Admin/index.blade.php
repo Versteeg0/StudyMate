@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="form-group">
-                            <a href="module" class="btn btn-primary">Module Beheer</a>
+                            <a href="subject" class="btn btn-primary">Vak Beheer</a>
                         </div>
 
                         <div class="form-group">

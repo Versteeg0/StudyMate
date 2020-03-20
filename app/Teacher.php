@@ -14,16 +14,16 @@ class Teacher extends Model
         'last_name',
     ];
 
-    public function modules(){
-        return  $this->belongsToMany(Module::class, 'module_teacher');
+    public function subjects(){
+        return  $this->belongsToMany(Subject::class, 'subject_teacher');
     }
 
-    public function getModuleAttribute(){
-        return Teacher::find($this->id)->modules()->get();
+    public function getSubjectAttribute(){
+        return Teacher::find($this->id)->subjects()->get();
     }
 
     public function module(){
-        return $this->hasMany(Module::class);
+        return $this->hasMany(Subject::class);
     }
 
 }

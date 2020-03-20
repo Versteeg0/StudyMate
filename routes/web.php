@@ -46,13 +46,13 @@ Route::middleware(['checkadmin'])->group(function () {
                 Route::post('create', 'FileController@create')->name('file.create.post');
             });
 
-            Route::prefix('module')->group(function() {
-                Route::get('/', 'ModuleController@index')->name('module.index');
-                Route::get('create', 'ModuleController@createPage')->name('module.createpage');
-                Route::post('create', 'ModuleController@create')->name('module.create');
-                Route::get('edit/{id}', 'ModuleController@editPage')->name('module.edit');
-                Route::post('edit/{id}', 'ModuleController@edit')->name('module.edit.post');
-                Route::get('delete/{id}', 'ModuleController@delete')->name('module.delete');
+            Route::prefix('subject')->group(function() {
+                Route::get('/', 'SubjectController@index')->name('subject.index');
+                Route::get('create', 'SubjectController@createPage')->name('subject.createpage');
+                Route::post('create', 'SubjectController@create')->name('subject.create');
+                Route::get('edit/{id}', 'SubjectController@editPage')->name('subject.edit');
+                Route::post('edit/{id}', 'SubjectController@edit')->name('subject.edit.post');
+                Route::get('delete/{id}', 'SubjectController@delete')->name('subject.delete');
             });
     });
 });

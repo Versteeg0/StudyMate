@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\File;
-use App\Module;
+use App\Subject;
 use Illuminate\Http\Request;
 use Session;
 use Storage;
@@ -12,12 +12,12 @@ class FileController extends Controller
 {
     public function index() {
         $aFiles = File::all();
-        $aModules = Module::all();
-        return view('file/index', ['aFiles' => $aFiles, 'aModules' => $aModules]);
+        $aSubjects = Subject::all();
+        return view('file/index', ['aFiles' => $aFiles, 'aSubjects' => $aSubjects]);
     }
 
     public function createPage(Request $request) {
-        $aModules = Module::all();
+        $aModules = Subject::all();
         return view('file.create', ['aModules' => $aModules]);
     }
 
@@ -41,7 +41,7 @@ class FileController extends Controller
         $sPath = $oUpload->store('public');
         $oFile->filepath = $sPath;
         $oFile->filename = $oUpload->getClientOriginalName();
-        $oFile->module()->associate(Module::find($request->module));
+        $oFile->subject()->associate(Subject::find($request->subject));
 
 
         $oFile->save();

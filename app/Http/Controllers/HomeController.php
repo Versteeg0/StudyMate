@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,23 +14,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $aModules = Module::all();
+        $aSubjects = Subject::all();
         $aEC = array();
         $totalEC = null;
         $gainedEC = null;
-        foreach($aModules as $module){
-            if($module->isChecked == 1){
-                $gainedEC = $gainedEC + $module->module_ec;
-                if(!in_array($module->module_period, $aEC)){
-                    $aEC[$module->module_period] = $module->module_ec;
+        foreach($aSubjects as $subject){
+            if($subject->isChecked == 1){
+                $gainedEC = $gainedEC + $subject->subject_ec;
+                if(!in_array($subject->subject_period, $aEC)){
+                    $aEC[$subject->subject_period] = $subject->subject_ec;
                 }  else {
-                    $aEC[$module->module_period] =  $aEC[$module->module_period] + $module->module_ec;
+                    $aEC[$subject->subject_period] =  $aEC[$subject->subject_period] + $subject->subject_ec;
                 }
             }
-            $totalEC = $totalEC + $module->module_ec;
+            $totalEC = $totalEC + $subject->subject_ec;
         }
         $aPeriods = array_keys($aEC);
-        $aPercentage = ($gainedEC * 100) / $totalEC;
-        return view('home', ['aModules' => $aModules, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC, 'percentageEC' => $aPercentage]);
+        if($totalEC > 0){
+            $aPercentage = ($gainedEC * 100) / $totalEC;
+
+        }else{
+            $aPercentage = 100;
+    }
+        return view('home', ['aSubjects' => $aSubjects, 'aPeriods' => $aPeriods, 'aEC' => $aEC, 'totalEC' => $totalEC, 'gainedEC' => $gainedEC, 'percentageEC' => $aPercentage]);
     }
 }

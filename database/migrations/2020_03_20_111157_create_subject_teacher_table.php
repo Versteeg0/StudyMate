@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModuleTeacherTable extends Migration
+class CreateSubjectTeacherTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateModuleTeacherTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_teacher', function (Blueprint $table) {
+        Schema::create('subject_teacher', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');;
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');;
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');;
             $table->timestamps();
         });

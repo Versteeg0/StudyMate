@@ -14,9 +14,9 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label>Module</label>
-                    <select name="module" class="form-control" value="">
-                        @foreach($aModules as $module)
-                            <option value="{{$module->id}}">{{$module->module_name}}</option>
+                    <select name="subject" class="form-control" value="">
+                        @foreach($aSubjects as $subject)
+                            <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
                         @endforeach
                     </select>
                 </div>
