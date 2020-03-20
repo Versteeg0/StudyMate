@@ -17,8 +17,6 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 Auth::routes(['register' => false]);
 
-
-
 Route::get('/unauthorized', function () {
     return view('unauthorized');
 });

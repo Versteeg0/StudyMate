@@ -23,7 +23,7 @@ class HomeController extends Controller
                 $gainedEC = $gainedEC + $module->module_ec;
                 if(!in_array($module->module_period, $aEC)){
                     $aEC[$module->module_period] = $module->module_ec;
-                }  else {
+                } else{
                     $aEC[$module->module_period] =  $aEC[$module->module_period] + $module->module_ec;
                 }
             }
