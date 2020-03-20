@@ -28,7 +28,6 @@ Route::middleware(['checkadmin'])->group(function () {
             Route::get('/', 'AdminController@index');
             Route::get('/index', 'AdminController@index');
 
-
             Route::prefix('teacher')->group(function() {
                 Route::get('/', 'TeacherController@index')->name('teacher.index');
                 Route::get('create', 'TeacherController@createPage')->name('teacher.createpage');
@@ -44,6 +43,15 @@ Route::middleware(['checkadmin'])->group(function () {
                 Route::get('delete/{id}', 'FileController@delete')->name('file.delete');
                 Route::get('create', 'FileController@createPage')->name('file.createpage');
                 Route::post('create', 'FileController@create')->name('file.create.post');
+            });
+
+            Route::prefix('assignment')->group(function() {
+                Route::get('/', 'AssignmentController@index')->name('assignment.index');
+                Route::get('create', 'AssignmentController@createPage')->name('assignment.createpage');
+                Route::post('create', 'AssignmentController@create')->name('assignment.create');
+                Route::get('edit/{id}', 'AssignmentController@editPage')->name('assignment.edit');
+                Route::post('edit/{id}', 'AssignmentController@edit')->name('assignment.edit.post');
+                Route::get('delete/{id}', 'AssignmentController@delete')->name('assignment.delete');
             });
 
             Route::prefix('module')->group(function() {

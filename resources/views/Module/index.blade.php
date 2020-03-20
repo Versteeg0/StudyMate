@@ -12,7 +12,6 @@
                     <p/>
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Naam</th>
                         <th>Omschrijving</th>
                         <th>Categorie</th>
@@ -25,7 +24,6 @@
                     <tbody>
                     @foreach($aModules as $oModule)
                         <tr>
-                            <td>{{$oModule->id}}</td>
                             <td>{{$oModule->module_name}}</td>
                             <td>{{$oModule->module_description}}</td>
                             <td>{{$oModule->module_category}}</td>

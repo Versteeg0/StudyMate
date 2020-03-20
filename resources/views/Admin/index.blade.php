@@ -27,6 +27,10 @@
                         </div>
 
                         <div class="form-group">
+                            <a href="assignment" class="btn btn-primary">Toets Beheer</a>
+                        </div>
+
+                        <div class="form-group">
                             <a href="file" class="btn btn-primary">Bestand Beheer</a>
                         </div>
 

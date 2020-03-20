@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddGradeToAssignment extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('assignments', function (Blueprint $table) {
+            $table->string('name');
+            $table->integer('grade')->nullable();
+            $table->integer('ec');
+            $table->boolean('isChecked')->default(false);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('assignments', function (Blueprint $table) {
+            $table->dropColumn('name');
+            $table->dropColumn('grade');
+            $table->dropColumn('ec');
+            $table->dropColumn('isChecked');
+        });
+    }
+}
