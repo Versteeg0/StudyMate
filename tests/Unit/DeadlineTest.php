@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use App\Module;
 
 class DeadlineTest extends TestCase
 {
@@ -11,8 +12,15 @@ class DeadlineTest extends TestCase
      *
      * @return void
      */
-    public function testIndex()
+    public function testWhen_earned_EC_Attribute_is_correct()
     {
-        $this->assertIsArray(true);
+        // arrange
+        $oModule = new Module();
+
+        // act
+        $getTotalEarnedEC = $oModule->getTotalECAttribute();
+
+        // assert
+        $this->assertEquals(0);
     }
 }
