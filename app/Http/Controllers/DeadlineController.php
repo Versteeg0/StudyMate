@@ -48,7 +48,6 @@ class DeadlineController extends Controller
         $oAssignment->deadline = $request->deadline;
         $oAssignment->save();
 
-
         $oAssignment->tags()->sync(request('tags'));
         return redirect()->route("deadline.index");
     }
@@ -61,6 +60,9 @@ class DeadlineController extends Controller
         return view('deadline.detail', ['oAssignment' => $oAssignment]);
     }
 
+    /*
+     * Sort the assessments based on user input
+     */
     public function sort(Request $request){
         $sortMethod = $request->sortName;
         $aAssignments = Assignment::all();

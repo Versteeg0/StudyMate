@@ -14,10 +14,15 @@ class AddTeacherModuleTable extends Migration
     public function up()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('teacher_id')->nullable();
             $table->foreign('teacher_id')->references('id')->on('teachers')
-                ->onDelete('cascade');
+                ->onDelete('set null');
+        });
 
+        Schema::table('modules', function (Blueprint $table) {
+            $table->unsignedBigInteger('coordinator_id')->nullable();
+            $table->foreign('coordinator_id')->references('id')->on('teachers')
+                ->onDelete('set null');
         });
     }
 
@@ -30,6 +35,7 @@ class AddTeacherModuleTable extends Migration
     {
         Schema::table('modules', function (Blueprint $table) {
             $table->dropColumn('teacher_id');
+            $table->dropColumn('coordinator_id');
         });
     }
 }

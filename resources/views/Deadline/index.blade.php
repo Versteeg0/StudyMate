@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{$assignment->name}}</td>
                                 <td>{{$assignment->module->module_name}}</td>
-                                <td>{{$assignment->module->teacher->first_name}}</td>
+                                <td>@if($assignment->module->teacher_id != null){{$assignment->module->teacher->first_name}}@endif</td>
                                 @if($assignment->deadline == null)
                                     <td>Deadline niet gezet</td>
                                 @else

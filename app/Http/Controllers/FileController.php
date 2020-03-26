@@ -27,10 +27,14 @@ class FileController extends Controller
         Storage::delete($oFile->filepath);
         $oFile->delete();
         return redirect()->route('file.index');
-
     }
 
-
+/*
+ * We validate the files imported from the user input.
+ * We create a  new file and store it in the database with its generated filepath
+ * We then make the link to the storage link from Laravel and store the filepath & name in a different value to return them later on.
+ * The relation has been set with the associate method
+ */
     public function create(Request $request) {
         $this->validate($request, [
             'filepath' => 'required|max:10000'
@@ -43,13 +47,16 @@ class FileController extends Controller
         $oFile->filename = $oUpload->getClientOriginalName();
         $oFile->module()->associate(Module::find($request->module));
 
-
         $oFile->save();
         Session::flash('message', 'Je File is geupload!');
         return redirect()->route('file.index');
 
     }
 
+    /*
+     * Find the id of the filepath, we check if it is empty or not and then we say that the user downloads the correct file
+     * shown in the storage path.
+     */
     public function download($iId) {
         $oDownload = File::find($iId);
 

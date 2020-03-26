@@ -19,9 +19,7 @@ class AssignmentController extends Controller
 
     public function createPage(Request $request) {
         $aModules = Module::all();
-
         return view('assignment.create', ['aModules' => $aModules]);
-
     }
 
     public function create(Request $request)

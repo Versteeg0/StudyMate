@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+    /*
+     * Get all the modules with finished assessments
+     * for these modules calculate the gained EC and add them to a dictionary in the correct period
      */
     public function index()
     {

@@ -21,7 +21,6 @@ class ModuleController extends Controller
 
     public function createPage(Request $request) {
         $aTeachers = Teacher::all();
-
         return view('module.create', ['aTeachers' => $aTeachers]);
     }
 
@@ -38,15 +37,13 @@ class ModuleController extends Controller
             'module_block' => 'required|integer'
         ]);
 
-
-
         $oModule = new Module();
         $oModule->module_name = $request->module_module_name;
         $oModule->module_description = $request->module_module_description;
-        $oModule->coordinator = $request->module_coordinator;
         $oModule->module_category = $request->module_module_category;
         $oModule->module_period = $request->module_module_period;
         $oModule->module_block = $request->module_block;
+        $oModule->coordinator()->associate(Teacher::find($request->module_coordinator))->save();
         $oModule->teacher()->associate(Teacher::find($request->module_is_my_teacher))->save();
         $oModule->save();
         $oModule->teachers()->sync(request('teachers'));
@@ -72,30 +69,25 @@ class ModuleController extends Controller
            'module_period' => 'required|integer',
            'module_block' => 'required|integer'
         ]);
-
         $oModule = Module::find($iId);
-
         if(is_null($oModule)) {
             return redirect()->route('module.index');
         }
-
         $oModule->module_name = $request->get('module_name');
         $oModule->module_description = $request->get('module_description');
-        $oModule->coordinator = $request->get('module_coordinator');
         $oModule->module_category = $request->get('module_category');
         $oModule->module_period = $request->get('module_period');
         $oModule->module_block = $request->get('module_block');
         $oModule->teachers()->sync(request('teachers'));
+        $oModule->coordinator()->associate(Teacher::find($request->module_coordinator))->save();
         $oModule->teacher()->associate(Teacher::find($request->module_is_my_teacher))->save();
         $oModule->update();
-
         return redirect()->route('module.index');
     }
 
     public function delete(Request $request, $iId)
     {
         $oModule = Module::find($iId);
-
         if(!is_null($oModule)) {
             $oModule->delete();
         }

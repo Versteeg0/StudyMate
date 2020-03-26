@@ -33,7 +33,7 @@
                                             <tr>
                                                 <td>{{$oModule->module_name}}</td>
                                                 <td>{{$oModule->module_description}}</td>
-                                                <td>{{$oModule->teacher->first_name}}</td>
+                                                <td>@if($oModule->teacher_id != null){{$oModule->teacher->first_name}}@endif</td>
                                                 <td>{{$oModule->module_block}}</td>
                                                 <td>{{$oModule->getAverageGradeAttribute()}}</td>
                                                 <td>{{$oModule->getTotalECAttribute()}}</td>
