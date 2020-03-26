@@ -26,18 +26,15 @@ class TeacherController extends Controller
         ]);
 
         $oTeacher = new Teacher();
-
         $oTeacher->first_name = $request->teacher_first_name;
         $oTeacher->prefix = $request->teacher_prefix;
         $oTeacher->last_name = $request->teacher_last_name;
-
         $oTeacher->save();
         return redirect()->route('teacher.index');
     }
 
     public function editPage($iId) {
         $oTeacher = Teacher::find($iId);
-
         return view('teacher.edit', ['oTeacher' => $oTeacher ]);
     }
 
@@ -50,23 +47,18 @@ class TeacherController extends Controller
         ]);
 
         $oTeacher = Teacher::find($iId);
-
         if (is_null($oTeacher)) {
             return redirect()->route('teacher.index');
         }
-
         $oTeacher->first_name = $request->get('first_name');
         $oTeacher->prefix = $request->get('prefix');
         $oTeacher->last_name = $request->get('last_name');
-
         $oTeacher->update();
-
         return redirect()->route('teacher.index');
     }
 
     public function delete(Request $request, $iId) {
         $oTeacher = Teacher::find($iId);
-
         if(!is_null($oTeacher)) {
             $oTeacher->delete();
         }

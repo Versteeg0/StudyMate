@@ -27,10 +27,10 @@
                             <td>{{$oModule->module_name}}</td>
                             <td>{{$oModule->module_description}}</td>
                             <td>{{$oModule->module_category}}</td>
-                            <td>{{$aTeachers->find($oModule->coordinator)->first_name}}</td>
-                            <td>{{$oModule->teacher->first_name}}</td>
+                            <td>@if($oModule->coordinator_id != null){{$oModule->coordinator->first_name}}@endif</td>
+                            <td>@if($oModule->teacher_id != null){{$oModule->teacher->first_name}}@endif</td>
                             <td>{{$oModule->module_period}}</td>
-                            <td>{{$oModule->module_ec}}</td>
+                            <td>{{$oModule->getTotalECAttribute()}}</td>
                                 <td>
                                     <a href="{{ route('module.edit', $oModule->id) }}" class="btn btn-primary">Bewerk</a>
                                 </td>

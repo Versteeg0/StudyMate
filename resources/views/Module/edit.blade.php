@@ -41,7 +41,7 @@
                             <label>Coordinator</label>
                             <select name="module_coordinator" class="form-control">
                                 @foreach($aTeachers as $teacher)
-                                    <option value="{{$teacher->id}}" @if($teacher->id == $oModule->coordinator) selected="selected" @endif>{{$teacher->first_name}}</option>
+                                    <option value="{{$teacher->id}}" @if($teacher->id == $oModule->coordinator_id) selected="selected" @endif>{{$teacher->first_name}}</option>
                                 @endforeach
                             </select>
                         </div>

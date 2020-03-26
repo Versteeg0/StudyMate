@@ -22,9 +22,6 @@
                 <br>
                 <h3>Te verdienen EC:</h3>
                 <h3>{{$oAssignment->ec}}</h3>
-                <h3>Docent: </h3>
-                <h3>{{$oAssignment->module->teacher->first_name}}</h3>
-                <br>
                 <h4>Beschrijving:</h4>
                 <p>{{$oAssignment->module->module_description}}</p>
                 <br>

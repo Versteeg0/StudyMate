@@ -14,7 +14,7 @@ class ModuleTableSeeder extends Seeder
         DB::table('modules')->insert([
             'module_name' => 'PHP',
             'module_description' => 'Websites bouwen met laravel en PHP',
-            'coordinator' => 1,
+            'coordinator_id' => 1,
             'module_category' => 'Programmeren 1',
             'module_period' => '1',
             'module_block' => '2',
@@ -24,7 +24,7 @@ class ModuleTableSeeder extends Seeder
         DB::table('modules')->insert([
             'module_name' => 'JS',
             'module_description' => 'Magazijn manager bouwen met Javascript',
-            'coordinator' => 1,
+            'coordinator_id' => 1,
             'module_category' => 'Programmeren 1',
             'module_period' => '2',
             'module_block' => '4',
@@ -34,7 +34,7 @@ class ModuleTableSeeder extends Seeder
         DB::table('modules')->insert([
             'module_name' => 'REGEX',
             'module_description' => 'Leren hoe je een eigen regex bouwt.',
-            'coordinator' => 1,
+            'coordinator_id' => 1,
             'module_category' => 'Programmeren 1',
             'module_period' => '3',
             'module_block' => '2',
