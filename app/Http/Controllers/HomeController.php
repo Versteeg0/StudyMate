@@ -19,9 +19,9 @@ class HomeController extends Controller
         $totalEC = null;
         $gainedEC = null;
         foreach($aModules as $oModule){
+            $totalEC = $totalEC + $oModule->total_ec;
             if($oModule->isFinishedAttribute() == true){
                 array_push($aFinishedModules, $oModule);
-
                 foreach($oModule->assignments as $oAssignment) {
                     if($oAssignment->isChecked == 1){
                         $gainedEC = $gainedEC + $oAssignment->ec;
@@ -31,7 +31,7 @@ class HomeController extends Controller
                             $aEC[$oModule->module_period] = $aEC[$oModule->module_period] + $oAssignment->ec;
                         }
                     }
-                    $totalEC = $totalEC + $oAssignment->ec;
+
                 }
             }
         }

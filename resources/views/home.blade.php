@@ -35,9 +35,9 @@
                                                 <td>{{$oModule->module_description}}</td>
                                                 <td>@if($oModule->teacher_id != null){{$oModule->teacher->first_name}}@endif</td>
                                                 <td>{{$oModule->module_block}}</td>
-                                                <td>{{$oModule->getAverageGradeAttribute()}}</td>
-                                                <td>{{$oModule->getTotalECAttribute()}}</td>
-                                                <td>{{$oModule->getEarnedECAttribute()}}</td>
+                                                <td>{{$oModule->average_grade}}</td>
+                                                <td>{{$oModule->total_ec}}</td>
+                                                <td>{{$oModule->earned_ec}}</td>
                                             </tr>
                                         @endif
                                     @endforeach

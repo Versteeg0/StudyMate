@@ -30,7 +30,7 @@
                             <td>@if($oModule->coordinator_id != null){{$oModule->coordinator->first_name}}@endif</td>
                             <td>@if($oModule->teacher_id != null){{$oModule->teacher->first_name}}@endif</td>
                             <td>{{$oModule->module_period}}</td>
-                            <td>{{$oModule->getTotalECAttribute()}}</td>
+                            <td>{{$oModule->total_ec}}</td>
                                 <td>
                                     <a href="{{ route('module.edit', $oModule->id) }}" class="btn btn-primary">Bewerk</a>
                                 </td>
